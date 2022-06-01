@@ -13,13 +13,13 @@ Chary is a DispatchQueue Utilities for safer sync and asynchronous programming. 
 
 ## Requirements
 
-- Swift 5.0 or higher (or 5.5 when using Swift Package Manager)
-- iOS 12.0 or higher
+- Swift 5.0 or higher (or 5.3 when using Swift Package Manager)
+- iOS 10.0 or higher
 
 ### Only Swift Package Manager
 
-- macOS 12.0 or higher
-- tvOS 12.0 or higher
+- macOS 10.0 or higher
+- tvOS 10.10 or higher
 
 ## Installation
 
@@ -36,7 +36,7 @@ pod 'Chary'
 
 - Add it using XCode menu **File > Swift Package > Add Package Dependency**
 - Add **<https://github.com/hainayanda/Chary.git>** as Swift Package URL
-- Set rules at **version**, with **Up to Next Major** option and put **1.0.0** as its version
+- Set rules at **version**, with **Up to Next Major** option and put **1.0.1** as its version
 - Click next and wait
 
 ### Swift Package Manager from Package.swift
@@ -45,7 +45,7 @@ Add as your target dependency in **Package.swift**
 
 ```swift
 dependencies: [
-  .package(url: "https://github.com/hainayanda/Chary.git", .upToNextMajor(from: "1.0.0"))
+  .package(url: "https://github.com/hainayanda/Chary.git", .upToNextMajor(from: "1.0.1"))
 ]
 ```
 
