@@ -1,0 +1,24 @@
+{
+  "name": "Chary",
+  "version": "0.1.0",
+  "summary": "A short description of Chary.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/hainayanda/Chary",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Nayanda Haberty": "hainayanda@outlook.com"
+  },
+  "source": {
+    "git": "https://github.com/hainayanda/Chary.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "source_files": "Chary/Classes/**/*",
+  "swift_versions": "5.3",
+  "swift_version": "5.3"
+}
