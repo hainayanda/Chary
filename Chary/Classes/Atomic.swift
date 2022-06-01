@@ -9,7 +9,7 @@ import Foundation
 
 @propertyWrapper
 /// Property marked by this property wrapper will set and get atomically
-public class Atomic<Wrapped> {
+public final class Atomic<Wrapped> {
     var dispatcher: DispatchQueue
     var _wrappedValue: Wrapped
     public var wrappedValue: Wrapped {
