@@ -1,17 +1,29 @@
 # Chary
 
-[![CI Status](https://img.shields.io/travis/24823437/Chary.svg?style=flat)](https://travis-ci.org/24823437/Chary)
+Chary is an DispatchQueue Utilities for safer sync and asynchronous programming. It help to avoid race condition when dealing with multithreaded application
+
+[![codebeat badge](https://codebeat.co/badges/ba4573e9-f32d-40b7-b5c4-f9ea3870250e)](https://codebeat.co/projects/github-com-hainayanda-chary-main)
+![build](https://github.com/hainayanda/Chary/workflows/build/badge.svg)
+![test](https://github.com/hainayanda/Chary/workflows/test/badge.svg)
+[![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen)](https://swift.org/package-manager/)
 [![Version](https://img.shields.io/cocoapods/v/Chary.svg?style=flat)](https://cocoapods.org/pods/Chary)
 [![License](https://img.shields.io/cocoapods/l/Chary.svg?style=flat)](https://cocoapods.org/pods/Chary)
 [![Platform](https://img.shields.io/cocoapods/p/Chary.svg?style=flat)](https://cocoapods.org/pods/Chary)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
 
+- Swift 5.0 or higher (or 5.5 when using Swift Package Manager)
+- iOS 12.0 or higher
+
+### Only Swift Package Manager
+
+- macOS 12.0 or higher
+- tvOS 12.0 or higher
+
 ## Installation
+
+### Cocoapods
 
 Chary is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -20,10 +32,117 @@ it, simply add the following line to your Podfile:
 pod 'Chary'
 ```
 
+### Swift Package Manager from XCode
+
+- Add it using XCode menu **File > Swift Package > Add Package Dependency**
+- Add **<https://github.com/hainayanda/Pharos.git>** as Swift Package URL
+- Set rules at **version**, with **Up to Next Major** option and put **1.0.0** as its version
+- Click next and wait
+
+### Swift Package Manager from Package.swift
+
+Add as your target dependency in **Package.swift**
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/hainayanda/Pharos.git", .upToNextMajor(from: "1.0.0"))
+]
+```
+
+Use it in your target as `Chary`
+
+```swift
+ .target(
+    name: "MyModule",
+    dependencies: ["Chary"]
+)
+```
+
 ## Author
 
-24823437, hainayanda@outlook.com
+Nayanda Haberty, hainayanda@outlook.com
 
 ## License
 
-Chary is available under the MIT license. See the LICENSE file for more info.
+Pharos is available under the MIT license. See the LICENSE file for more info.
+
+***
+
+## Basic Usage
+
+There are two utilities that come with Chary, `Atomic` propertyWrapper and `DispatchQueue` extensions
+
+## Atomic propertyWrapper
+
+Atomic propertyWrapper is a propertyWrapper to wrapped a property so it could accessed and edited atomically:
+
+```swift
+class MyClass {
+    @Atomic var atomicString: String = "atomicString"
+    ...
+    ...
+}
+```
+
+then the atomicString will be Thread safe regardless where it accessed or edited.
+
+```swift
+DispatchQueue.main.async {
+    myClass.atomicString = "from main thread"
+}
+DispatchQueue.global().async {
+    myClass.atomicString = "from global thread"
+}
+```
+
+## DispatchQueue Extensions
+
+Chary have some DispatchQueue Extension that will help when dealing with multithreaded.
+
+### Registering DispatchQueue detection
+
+You can register `DispatchQueue` for detection so it will be available for check:
+
+```swift
+myQueue = DispatchQueue(label: "myQueue")
+myQueue.registerDetection()
+```
+
+So later you can check the current DispatchQueue like this:
+
+```swift
+let isRunInMyQueue = DispatchQueue.current == myQueue
+```
+
+Calling `current` will automatically register all system DispatchQueue like main or global
+
+### Safe Sync
+
+Running `sync` from `DispatchQueue` sometimes can raise an exception if it called in the same `DispatchQueue`. 
+To avoid this, you can use `safeSync` instead which will check the current queue first and decided wether it need to run the block right away or by using default `sync`.
+You dont need to register the `DispatchQueue` since it will automatically register the `DispatchQueue` before checking:
+
+```swift
+DispatchQueue.main.safeSync {
+    print("this will safely executed")
+}
+```
+
+### Async if needed
+
+Sometimes you want to execute the operation right away if its in the right `DispatchQueue` instead of call asynchronously by using `async`.
+Like when you updating UI, its better if you run it right away instead of put it in the asynchronous queue if you are already in DispatchQueue.main.
+You can use `asyncIfNeeded` to achieved that functionality right away. It will check the current `DispatchQueue` and decide wether it need to run right away or by using default `async`.
+You dont need to register the `DispatchQueue` since it will automatically register the `DispatchQueue` before checking:
+
+```swift
+DispatchQueue.main.asyncIfNeeded {
+    print("this will executed right away or asynchronously if in different queue")
+}
+```
+
+***
+
+## Contribute
+
+You know-how. Just clone and do pull request
