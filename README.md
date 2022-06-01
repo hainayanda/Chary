@@ -1,6 +1,6 @@
 # Chary
 
-Chary is an DispatchQueue Utilities for safer sync and asynchronous programming. It help to avoid race condition when dealing with multithreaded application
+Chary is a DispatchQueue Utilities for safer sync and asynchronous programming. It helps to avoid a race condition when dealing with multithreaded application
 
 [![codebeat badge](https://codebeat.co/badges/ba4573e9-f32d-40b7-b5c4-f9ea3870250e)](https://codebeat.co/projects/github-com-hainayanda-chary-main)
 ![build](https://github.com/hainayanda/Chary/workflows/build/badge.svg)
@@ -45,7 +45,7 @@ Add as your target dependency in **Package.swift**
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/hainayanda/Pharos.git", .upToNextMajor(from: "1.0.0"))
+  .package(url: "https://github.com/hainayanda/Pharos.git", .upToNextMajor(from: "1.0.0"))
 ]
 ```
 
@@ -70,11 +70,11 @@ Pharos is available under the MIT license. See the LICENSE file for more info.
 
 ## Basic Usage
 
-There are two utilities that come with Chary, `Atomic` propertyWrapper and `DispatchQueue` extensions
+Two utilities come with Chary, `Atomic` propertyWrapper and `DispatchQueue` extensions
 
 ## Atomic propertyWrapper
 
-Atomic propertyWrapper is a propertyWrapper to wrapped a property so it could accessed and edited atomically:
+Atomic propertyWrapper is a propertyWrapper to wrap a property so it could be accessed and edited atomically:
 
 ```swift
 class MyClass {
@@ -84,7 +84,7 @@ class MyClass {
 }
 ```
 
-then the atomicString will be Thread safe regardless where it accessed or edited.
+then the atomicString will be Thread safe regardless of where it is accessed or edited.
 
 ```swift
 DispatchQueue.main.async {
@@ -97,7 +97,7 @@ DispatchQueue.global().async {
 
 ## DispatchQueue Extensions
 
-Chary have some DispatchQueue Extension that will help when dealing with multithreaded.
+Chary has some DispatchQueue Extension that will help when dealing with multithreaded.
 
 ### Registering DispatchQueue detection
 
@@ -118,9 +118,9 @@ Calling `current` will automatically register all system DispatchQueue like main
 
 ### Safe Sync
 
-Running `sync` from `DispatchQueue` sometimes can raise an exception if it called in the same `DispatchQueue`. 
-To avoid this, you can use `safeSync` instead which will check the current queue first and decided wether it need to run the block right away or by using default `sync`.
-You dont need to register the `DispatchQueue` since it will automatically register the `DispatchQueue` before checking:
+Running `sync` from `DispatchQueue` sometimes can raise an exception if it is called in the same `DispatchQueue`. 
+To avoid this, you can use `safeSync` instead which will check the current queue first and decide whether it needs to run the block right away or by using the default `sync`.
+You don't need to register the `DispatchQueue` since it will automatically register the `DispatchQueue` before checking:
 
 ```swift
 DispatchQueue.main.safeSync {
@@ -130,10 +130,10 @@ DispatchQueue.main.safeSync {
 
 ### Async if needed
 
-Sometimes you want to execute the operation right away if its in the right `DispatchQueue` instead of call asynchronously by using `async`.
-Like when you updating UI, its better if you run it right away instead of put it in the asynchronous queue if you are already in DispatchQueue.main.
-You can use `asyncIfNeeded` to achieved that functionality right away. It will check the current `DispatchQueue` and decide wether it need to run right away or by using default `async`.
-You dont need to register the `DispatchQueue` since it will automatically register the `DispatchQueue` before checking:
+Sometimes you want to execute the operation right away if it's in the right `DispatchQueue` instead of running it asynchronously by using `async`.
+Like when you update UI, it's better if you run it right away instead of putting it in the asynchronous queue if you are already in DispatchQueue.main.
+You can use `asyncIfNeeded` to achieve that functionality right away. It will check the current `DispatchQueue` and decide whether it needs to run right away or by using the default `async`.
+You don't need to register the `DispatchQueue` since it will automatically register the `DispatchQueue` before checking:
 
 ```swift
 DispatchQueue.main.asyncIfNeeded {
@@ -145,4 +145,4 @@ DispatchQueue.main.asyncIfNeeded {
 
 ## Contribute
 
-You know-how. Just clone and do pull request
+You know-how. Just clone and do a pull request
