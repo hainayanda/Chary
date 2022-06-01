@@ -33,7 +33,7 @@ extension DispatchQueue {
         return nil
     }
     
-    /// Register all systems DispatchQueue for detection
+    /// Register all systems DispatchQueue for detection including: main, global, global background, global default, global user initiated, global user interactivity, global utiliity
     public static func registerSystemDetection() {
         [
             DispatchQueue.main, DispatchQueue.global(),
