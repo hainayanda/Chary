@@ -45,7 +45,7 @@ Add as your target dependency in **Package.swift**
 
 ```swift
 dependencies: [
-  .package(url: "https://github.com/hainayanda/Pharos.git", .upToNextMajor(from: "1.0.0"))
+  .package(url: "https://github.com/hainayanda/Chary.git", .upToNextMajor(from: "1.0.0"))
 ]
 ```
 
