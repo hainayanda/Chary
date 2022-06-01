@@ -1,8 +1,8 @@
 {
   "name": "Chary",
   "version": "0.1.0",
-  "summary": "A short description of Chary.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "Chary is a thread utility library",
+  "description": "Chary is a thread utility library, with some of DispatchQueue extension and Atomic property wrapper",
   "homepage": "https://github.com/hainayanda/Chary",
   "license": {
     "type": "MIT",

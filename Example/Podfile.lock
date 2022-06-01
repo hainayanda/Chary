@@ -1,12 +1,12 @@
 PODS:
   - Chary (0.1.0)
-  - Nimble (8.0.9)
-  - Quick (2.2.1)
+  - Nimble (10.0.0)
+  - Quick (5.0.1)
 
 DEPENDENCIES:
   - Chary (from `../`)
-  - Nimble (~> 8.0.7)
-  - Quick (~> 2.2.0)
+  - Nimble (~> 10.0.0)
+  - Quick (~> 5.0.1)
 
 SPEC REPOS:
   trunk:
@@ -18,10 +18,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Chary: 0f58dcb0f1dce607c3f46466e6baa2033ab1ea4f
-  Nimble: 98b888285a615fd34f20e61753cf58ea1402bde4
-  Quick: f5754d69b7013f5864c29aab9ae6f0c79c5bc200
+  Chary: 672ba79441f26e2c1c1ce2b834d2b8895082d84a
+  Nimble: 5316ef81a170ce87baf72dd961f22f89a602ff84
+  Quick: 749aa754fd1e7d984f2000fe051e18a3a9809179
 
-PODFILE CHECKSUM: 8719c38c60e027d9aeacda36fe1afa11c385d738
+PODFILE CHECKSUM: a34c802c1f382f9e4b0254ff2a0f8f9a73ae2d2b
 
 COCOAPODS: 1.11.3
