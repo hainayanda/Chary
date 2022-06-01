@@ -24,7 +24,7 @@ class AtomicSpec: QuickSpec {
                 atomicText.wrappedValue = "background"
             }
             // this sometimes fail because its already changed to background
-            expect(atomicText.wrappedValue).toEventually(equal("main"))
+//            expect(atomicText.wrappedValue).toEventually(equal("main"))
             expect(atomicText.wrappedValue).toEventually(equal("background"))
         }
     }
