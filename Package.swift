@@ -17,8 +17,9 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/Quick/Quick.git", from: "5.0.1"),
-        .package(url: "https://github.com/Quick/Nimble.git", from: "10.0.0")
+        // uncomment code below to test
+//        .package(url: "https://github.com/Quick/Quick.git", from: "5.0.1"),
+//        .package(url: "https://github.com/Quick/Nimble.git", from: "10.0.0")
     ],
     targets: [
         .target(
@@ -26,13 +27,14 @@ let package = Package(
             dependencies: [],
             path: "Chary/Classes"
         ),
-        .testTarget(
-            name: "CharyTests",
-            dependencies: [
-                "Chary", "Quick", "Nimble"
-            ],
-            path: "Example/Tests",
-            exclude: ["Info.plist"]
-        )
+        // uncomment code below to test
+//        .testTarget(
+//            name: "CharyTests",
+//            dependencies: [
+//                "Chary", "Quick", "Nimble"
+//            ],
+//            path: "Example/Tests",
+//            exclude: ["Info.plist"]
+//        )
     ]
 )
