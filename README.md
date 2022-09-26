@@ -2,7 +2,7 @@
 
 Chary is a DispatchQueue Utilities for safer sync and asynchronous programming. It helps to avoid a race condition when dealing with multithreaded application
 
-[![codebeat badge](https://codebeat.co/badges/ba4573e9-f32d-40b7-b5c4-f9ea3870250e)](https://codebeat.co/projects/github-com-hainayanda-chary-main)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/acc82b746a3345b6a7e91b249c52b50f)](https://www.codacy.com/gh/hainayanda/Chary/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=hainayanda/Chary&amp;utm_campaign=Badge_Grade)
 ![build](https://github.com/hainayanda/Chary/workflows/build/badge.svg)
 ![test](https://github.com/hainayanda/Chary/workflows/test/badge.svg)
 [![SwiftPM Compatible](https://img.shields.io/badge/SwiftPM-Compatible-brightgreen)](https://swift.org/package-manager/)
