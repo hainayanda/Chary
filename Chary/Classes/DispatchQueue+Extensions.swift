@@ -122,8 +122,8 @@ extension DispatchQueue {
     /// - Returns: The value returned by the block
     public func ifAtSameQueue<Return>(do block: () throws -> Return, ifNot doElse: () throws -> Return) rethrows -> Return {
         guard DispatchQueue.isCurrentQueue(is: self) else {
-            return try block()
+            return try doElse()
         }
-        return try doElse()
+        return try block()
     }
 }
