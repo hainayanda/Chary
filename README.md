@@ -99,22 +99,41 @@ DispatchQueue.global().async {
 
 Chary has some DispatchQueue Extension that will help when dealing with multithreaded.
 
-### Registering DispatchQueue detection
+### Check current queue
 
-You can register `DispatchQueue` for detection so it will be available for check:
+You can check current DispatchQueue using `isCurrentQueue(is:)` which will check is the queue given is the current queue or not.
 
 ```swift
 myQueue = DispatchQueue(label: "myQueue")
-myQueue.registerDetection()
+myQueue.sync {
+    // this will print true
+    print(DispatchQueue.isCurrentQueue(is: myQueue))
+}
+// this will print false
+print(DispatchQueue.isCurrentQueue(is: myQueue))
 ```
 
-So later you can check the current DispatchQueue like this:
+What it did do is registering the DispatchQueue given for detection and compare the current detectable queues with the given one:
 
 ```swift
-let isRunInMyQueue = DispatchQueue.current == myQueue
+public static func isCurrentQueue(is queue: DispatchQueue) -> Bool {
+    queue.registerDetection()
+    return current == queue
+}
 ```
 
-Calling `current` will automatically register all system DispatchQueue like main or global
+Calling `DispatchQueue.current` will not guarantee to return the current `DispatchQueue`, since it can only return only `DispatchQueue` that already been registered for detection.
+There are some default `DispatchQueue` that will auto registered when `current` is called:
+- `DispatchQueue.main`
+- `DispatchQueue.global()`
+- `DispatchQueue.global(qos: .background)`
+- `DispatchQueue.global(qos: .default)`
+- `DispatchQueue.global(qos: .unspecified)`
+- `DispatchQueue.global(qos: .userInitiated)`
+- `DispatchQueue.global(qos: .userInteractive)`
+- `DispatchQueue.global(qos: .utility)`
+
+Other than that, it will need manual call for `registerDetection()` to allow the `DispatchQueue` to be accesible by calling `DispatchQueue.current`. Since `isCurrentQueue(is:)` will automatically register the given `DispatchQueue`, the queue passed will be accesible from `DispatchQueue.current` after.
 
 ### Safe Sync
 
