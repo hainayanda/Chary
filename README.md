@@ -15,11 +15,9 @@ Chary is a DispatchQueue Utilities for safer sync and asynchronous programming. 
 
 - Swift 5.0 or higher (or 5.3 when using Swift Package Manager)
 - iOS 10.0 or higher
-
-### Only Swift Package Manager
-
 - macOS 10.0 or higher
 - tvOS 10.10 or higher
+- watchOS 4 or higher
 
 ## Installation
 
