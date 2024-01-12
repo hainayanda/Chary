@@ -69,9 +69,10 @@ extension DispatchQueue {
     /// - Parameter block: The work item to be invoked on the queue.
     /// - returns the value returned by the work item.
     public func safeSync<Return>(
+        flags: DispatchWorkItemFlags = [],
         execute block: () throws -> Return) rethrows -> Return {
         try ifAtDifferentQueue {
-            try sync(execute: block)
+            try sync(flags: flags, execute: block)
         } ifNot: {
             try block()
         }
@@ -89,9 +90,9 @@ extension DispatchQueue {
     
     /// Perform asynchronous task if in different queue than the target. It will run the block right away if turns out its on the same queue as the target
     /// - Parameter block: The work item to be invoked on the queue.
-    public func asyncIfNeeded(execute block: @escaping () -> Void) {
+    public func asyncIfNeeded(qos: DispatchQoS = .unspecified, flags: DispatchWorkItemFlags = [], execute block: @escaping () -> Void) {
         ifAtDifferentQueue {
-            async(execute: block)
+            async(qos: qos, flags: flags, execute: block)
         } ifNot: {
             block()
         }
