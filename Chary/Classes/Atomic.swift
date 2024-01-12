@@ -14,12 +14,12 @@ public final class Atomic<Wrapped> {
     var _wrappedValue: Wrapped
     public var wrappedValue: Wrapped {
         get {
-            dispatcher.safeSync {
+            dispatcher.safeSync(flags: .barrier) {
                 _wrappedValue
             }
         }
         set {
-            dispatcher.safeSync {
+            dispatcher.safeSync(flags: .barrier) {
                 _wrappedValue = newValue
             }
         }
