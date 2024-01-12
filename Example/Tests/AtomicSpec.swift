@@ -14,18 +14,24 @@ import Chary
 class AtomicSpec: QuickSpec {
     
     override func spec() {
-        var atomicText: Atomic<String>!
+        var atomicCount: Atomic<Int>!
         beforeEach {
-            atomicText = Atomic(wrappedValue: "atomicText")
+            atomicCount = Atomic(wrappedValue: 0)
         }
         it("should assign the value atomically") {
-            atomicText.wrappedValue = "main"
-            DispatchQueue.global(qos: .utility).async {
-                atomicText.wrappedValue = "background"
+            DispatchQueue.main.async {
+                atomicCount.wrappedValue += 1
             }
-            // this sometimes fail because its already changed to background
-//            expect(atomicText.wrappedValue).toEventually(equal("main"))
-            expect(atomicText.wrappedValue).toEventually(equal("background"))
+            DispatchQueue.global(qos: .default).async {
+                atomicCount.wrappedValue += 1
+            }
+            DispatchQueue.global(qos: .background).async {
+                atomicCount.wrappedValue += 1
+            }
+            DispatchQueue.global(qos: .utility).async {
+                atomicCount.wrappedValue += 1
+            }
+            expect(atomicCount.wrappedValue).toEventually(equal(4))
         }
     }
 }
