@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'Chary'
-  s.version          = '1.0.4'
+  s.version          = '1.0.5'
   s.summary          = 'Chary is a thread utility library'
 
 # This description is used to generate tags and improve search results.
