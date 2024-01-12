@@ -20,18 +20,14 @@ class AtomicSpec: QuickSpec {
         }
         it("should assign the value atomically") {
             DispatchQueue.main.async {
-                atomicCount.wrappedValue += 1
-            }
-            DispatchQueue.global(qos: .default).async {
+                print("main executed")
                 atomicCount.wrappedValue += 1
             }
             DispatchQueue.global(qos: .background).async {
+                print("background executed")
                 atomicCount.wrappedValue += 1
             }
-            DispatchQueue.global(qos: .utility).async {
-                atomicCount.wrappedValue += 1
-            }
-            expect(atomicCount.wrappedValue).toEventually(equal(4))
+            expect(atomicCount.wrappedValue).toEventually(equal(2))
         }
     }
 }

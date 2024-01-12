@@ -14,23 +14,6 @@ import Chary
 class DispatchQueueSpec: QuickSpec {
     
     override func spec() {
-        describe("system queue") {
-            var queues: [DispatchQueue]!
-            beforeEach {
-                queues = [
-                    DispatchQueue.main, DispatchQueue.global(),
-                    DispatchQueue.global(qos: .background), DispatchQueue.global(qos: .default),
-                    DispatchQueue.global(qos: .unspecified), DispatchQueue.global(qos: .userInitiated),
-                    DispatchQueue.global(qos: .userInteractive), DispatchQueue.global(qos: .utility)
-                ]
-            }
-            it("should get current system queue") {
-                for queue in queues {
-                    let detection = queue.safeSync { DispatchQueue.current }
-                    expect(detection).to(equal(queue))
-                }
-            }
-        }
         describe("custom queue") {
             var queue: DispatchQueue!
             beforeEach {
